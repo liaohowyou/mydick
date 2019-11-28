@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.app.dao.BackendUserDao">
+<!-- 根据用户名和密码获得管理者信息 -->
+  <select id="getByuserCodeAnduserPassword" resultType="BackendUser">
+    select * from backend_user where userCode=#{userCode} and userPassword=#{userPassword}
+  </select>
+  
+</mapper>

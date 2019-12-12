@@ -15,13 +15,13 @@ public class BackendUser {
 	private Date creationDate;//创建时间
 	private Integer modifyBy;//更新者
 	private Date modifyDate;//更新时间
-	private String userTypeName;//用户角色类型名称
+	private DataDictionary dataDictionary;
 	
-	public String getUserTypeName() {
-		return userTypeName;
+	public DataDictionary getDataDictionary() {
+		return dataDictionary;
 	}
-	public void setUserTypeName(String userTypeName) {
-		this.userTypeName = userTypeName;
+	public void setDataDictionary(DataDictionary dataDictionary) {
+		this.dataDictionary = dataDictionary;
 	}
 	public String getUserPassword() {
 		return userPassword;

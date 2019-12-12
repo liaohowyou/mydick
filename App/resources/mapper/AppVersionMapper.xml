@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.app.dao.AppVersionDao">
+
+	<select id="getby" resultType="AppVersion">
+		SELECT a.*,
+		(SELECT softwareName FROM `app_info` b WHERE b.id=a.appId)
+		AS appName ,
+		(SELECT valueName FROM `data_dictionary` c WHERE
+		c.typeCode='PUBLISH_STATUS' AND a.publishStatus=c.valueId) AS
+		publishStatusName
+		FROM `app_version` AS a WHERE a.appId=#{id}
+
+		<!-- select v.*, (select a.softwareName from app_info a where a.id=v.appId 
+			) as appName, (select valueName from data_dictionary d where v.publishStatus=d.valueId 
+			AND d.typeCode='PUBLISH_STATUS') as publishStatusName from app_version v 
+			<trim prefix="where" prefixOverrides="and | or"> <if test="id != null"> and 
+			v.appId = #{id} </if> </trim> order by v.creationDate DESC -->
+	</select>
+
+	<insert id="versionAdd">
+		INSERT INTO
+		`app_version`(id,appId,versionNo,versionSize,publishStatus,versionInfo,apkLocPath)
+		VALUES(null,#{appId},#{versionNo},#{versionSize},#{publishStatus},#{versionInfo},#{apkLocPath})
+	</insert>
+
+	<select id="getByid" resultType="int">
+		select max(id) from app_version where appId=#{appId}
+	</select>
+
+	<!-- 查询版本信息 -->
+	<select id="getUpdateid" resultType="AppVersion">
+		SELECT * FROM app_version WHERE id=#{id}
+	</select>
+
+	<!-- 修改版本信息 -->
+	<update id="updateall">
+		update app_version set
+		versionNo=#{versionNo},
+		versionInfo=#{versionInfo},
+		publishStatus=#{publishStatus},
+		downloadLink=#{downloadLink},
+		apkLocPath=#{apkLocPath},
+		versionSize=#{versionSize},
+		apkFileName=#{apkFileName},
+		modifyBy=#{modifyBy},
+		modifyDate=#{modifyDate}
+		where id=#{id}
+	</update>
+	
+	<select id="getidall" resultType="AppVersion">
+	SELECT a.*,
+		(SELECT softwareName FROM `app_info` b WHERE b.id=a.appId)
+		AS appName ,
+		(SELECT valueName FROM `data_dictionary` c WHERE
+		c.typeCode='PUBLISH_STATUS' AND a.publishStatus=c.valueId) AS
+		publishStatusName
+		FROM `app_version` AS a WHERE a.appId=#{id}
+	</select>
+</mapper>

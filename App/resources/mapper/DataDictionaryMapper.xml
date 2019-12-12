@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.app.dao.DataDictionaryDao">
+<resultMap type="DataDictionary" id="BaseResultMap">
+ <id property="id" column="id"></id>
+ <result property="typeCode" column="typeCode"/>
+ <result property="typeName" column="typeName"/>
+ <result property="valueId" column="valueId"/>
+ <result property="valueName" column="valueName"/>
+ <result property="createdBy" column="createdBy"/>
+ <result property="creationDate" column="creationDate"/>
+ <result property="modifyBy" column="modifyBy"/>
+ <result property="modifyDate" column="modifyDate"/>
+</resultMap>
+
+<resultMap type="DataDictionary" id="FullResultMap">
+ 
+</resultMap>
+<!-- 查询APP状态,所属平台 -->
+   <select id="getByvalueName" resultType="DataDictionary">
+     SELECT * FROM data_dictionary WHERE typeCode=#{typeCode}
+   </select>
+<!-- 查询 -->
+   <select id="getByvalueName2" resultType="DataDictionary">
+     SELECT * FROM data_dictionary WHERE typeCode=#{typeCode}
+   </select>
+</mapper>

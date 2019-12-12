@@ -7,14 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import cn.app.pojo.DevUser;
+import cn.app.service.AppInfoService;
 import cn.app.service.DevUserService;
 @Controller
 @RequestMapping("/dev")
 public class DevUserController {
    @Resource
 	private DevUserService devUserService;
-	
+	@Resource
+	private AppInfoService appinfoService;
 	//跳转到开发者登录界面
    @RequestMapping("/beforeLogin")
    public String beforeLogin(){
@@ -41,4 +44,5 @@ public class DevUserController {
 	   session.invalidate();
 	   return "devlogin";
    }
+ 
 }

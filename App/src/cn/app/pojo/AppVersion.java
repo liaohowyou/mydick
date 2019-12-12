@@ -6,7 +6,16 @@ import java.util.Date;
 /**
  * App版本信息表
  */
+
 public class AppVersion {
+	@Override
+	public String toString() {
+		return "AppVersion [id=" + id + ", appId=" + appId + ", versionNo=" + versionNo + ", versionInfo=" + versionInfo
+				+ ", publishStatus=" + publishStatus + ", downloadLink=" + downloadLink + ", versionSize=" + versionSize
+				+ ", createdBy=" + createdBy + ", creationDate=" + creationDate + ", modifyBy=" + modifyBy
+				+ ", modifyDate=" + modifyDate + ", apkLocPath=" + apkLocPath + ", appName=" + appName
+				+ ", publishStatusName=" + publishStatusName + ", apkFileName=" + apkFileName + "]";
+	}
 	private Integer id;//主键id
 	private Integer appId;//appId
 	private String versionNo;//版本号
@@ -114,4 +123,5 @@ public class AppVersion {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
+	
 }

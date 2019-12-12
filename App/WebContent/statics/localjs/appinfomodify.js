@@ -1,7 +1,7 @@
 function  loadCategoryLevel(pid,cl,categoryLevel){
 	$.ajax({
 		type:"GET",//请求类型
-		url:"categorylevellist.json",//请求的url
+		url:"Updatecategorylevellist.do",//请求的url
 		data:{pid:pid},//请求参数
 		dataType:"json",//ajax接口（请求url）返回的数据类型
 		success:function(data){//data：返回数据（json对象）
@@ -26,9 +26,9 @@ function  loadCategoryLevel(pid,cl,categoryLevel){
 function delfile(id){
 	$.ajax({
 		type:"GET",//请求类型
-		url:"delfile.json",//请求的url
+		url:"delfile.do",//请求的url
 		data:{id:id,flag:'logo'},//请求参数
-		dataType:"json",//ajax接口（请求url）返回的数据类型
+	dataType:"json",//ajax接口（请求url）返回的数据类型
 		success:function(data){//data：返回数据（json对象）
 			if(data.result == "success"){
 				alert("删除成功！");
@@ -41,14 +41,14 @@ function delfile(id){
 		error:function(data){//当访问时候，404，500 等非200的错误状态码
 			alert("请求错误！");
 		}
-	});  
+});  
 }
 
 $(function(){  
 	//动态加载所属平台列表
 	$.ajax({
 		type:"GET",//请求类型
-		url:"datadictionarylist.json",//请求的url
+		url:"datadictionarylist.do",//请求的url
 		data:{tcode:"APP_FLATFORM"},//请求参数
 		dataType:"json",//ajax接口（请求url）返回的数据类型
 		success:function(data){//data：返回数据（json对象）
@@ -106,7 +106,7 @@ $(function(){
 	});
 	
 	$("#back").on("click",function(){
-		window.location.href = "list";
+		window.location.href = "click.do";
 	});
 	
 	

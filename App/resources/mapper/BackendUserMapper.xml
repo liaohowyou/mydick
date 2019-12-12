@@ -3,9 +3,24 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.app.dao.BackendUserDao">
+
+<resultMap type="BackendUser" id="BaseResultMap">
+<id property="id" column="id"/>
+ <result property="userCode" column="userCode"/>
+ <result property="userType" column="userType"/>
+ <result property="createdBy" column="createdBy"/>
+ <result property="creationDate" column="creationDate"/>
+ <result property="modifyBy" column="modifyBy"/>
+ <result property="modifyDate" column="modifyDate"/>
+ <result property="userPassword" column="userPassword"/>
+</resultMap>
+
+<resultMap type="BackendUser" id="FullResultMap" extends="BaseResultMap">
+ <association property="dataDictionary" resultMap="cn.app.dao.DataDictionaryDao.BaseResultMap"></association>
+</resultMap>
 <!-- 根据用户名和密码获得管理者信息 -->
-  <select id="getByuserCodeAnduserPassword" resultType="BackendUser">
-    select * from backend_user where userCode=#{userCode} and userPassword=#{userPassword}
-  </select>
+  <select id="getByuserCodeAnduserPassword" resultMap="BaseResultMap">
+   SELECT backend_user.*,data_dictionary.`valueName` FROM `backend_user` LEFT JOIN `data_dictionary` ON backend_user.userType = data_dictionary.id WHERE userCode=#{userCode} and userPassword=#{userPassword}
+ </select>
   
 </mapper>
